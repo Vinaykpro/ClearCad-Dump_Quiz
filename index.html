@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Dark Mode</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #444;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding:10px;
+        }
+        .options li label {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .options li input[type="checkbox"],
+        .options li input[type="radio"] {
+            margin: 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .buttons button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        @media (max-width: 600px) {
+            .buttons {
+                flex-direction: column;
+            }
+            .buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        .correct {
+            border-radius: 7px;
+            animation: fade 0.5s ease-in;
+            background-color: #28a745;
+        }
+        @keyframes fade {
+            0% {
+                opacity: 100;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .wrong {
+            border-radius: 7px;
+            animation: fade 0.5s ease-in;
+            background-color: #dc3545;
+        }
+        .status {
+            background-color: #555;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status" id="status">
+            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">4</span> | Score: <span id="score">0</span>
+        </div>
+        <div id="quiz-container">
+            <!-- Question and options will be inserted here -->
+        </div>
+        <div class="buttons">
+            <button id="prevBtn" onclick="prevQuestion()" disabled>Previous</button>
+            <button id="nextBtn" onclick="checkAnswer()">Next</button>
+        </div>
+    </div>
+
+    <script>
+        alert("All 151 questions will be added soon...");
+        const quizData = [
+        {
+      "question_text": "Which of the following statements is true for the Form Designer?\n\na) To add a field to the form layout, drag the field from the Fields tab to the desired destination on the form.\nb) To create a new field on a form's table, drag the appropriate data type from the Field Types tab to the form and then configure the new field.\nc) To remove a field from the form layout, hover over the field to enable the Action buttons, and select the Delete (X) button.\nd) To add a section to the form layout, drag it from the Field Types tab to the desired destination on the form.",
+      "question_type": "single",
+      "options": [
+        {
+          "option_id": "o1",
+          "option_text": "a, b, c, and d"
+        },
+        {
+          "option_id": "o2",
+          "option_text": "b, c, and d"
+        },
+        {
+          "option_id": "o3",
+          "option_text": "a, b, and d"
+        },
+        {
+          "option_id": "o4",
+          "option_text": "a, b, and c"
+        }
+      ],
+      "correct_options": ["o4"]
+    },
+    {
+      "question_text": "Which of the following are configured in an Email Notification?\n\na) Who will receive the notification.\nb) What content will be in the notification.\nc) When to send the notification.\nd) How to send the notification.",
+      "question_type": "single",
+      "options": [
+        {
+          "option_id": "o1",
+          "option_text": "a, b and c"
+        },
+        {
+          "option_id": "o2",
+          "option_text": "a, b, and d"
+        },
+        {
+          "option_id": "o3",
+          "option_text": "b, c and d"
+        },
+        {
+          "option_id": "o4",
+          "option_text": "a, c and d"
+        }
+      ],
+      "correct_options": ["o1"]
+    },
+    {
+      "question_text": "To see what scripts, reports, and other application artifacts will be in a published application:",
+      "question_type": "single",
+      "options": [
+        {
+          "option_id": "o1",
+          "option_text": "Enter the name of the Application in the Global search field"
+        },
+        {
+          "option_id": "o2",
+          "option_text": "Open the list of Update Sets for the instance"
+        },
+        {
+          "option_id": "o3",
+          "option_text": "Examine the Application Files Related List in the application to be published"
+        },
+        {
+          "option_id": "o4",
+          "option_text": "Open the artifact records individually to verify the value in the Application field"
+        }
+      ],
+      "correct_options": ["o3"]
+    },
+    {
+  "question_text": "Which Application Access configuration field(s) are NOT available if the Can read configuration field is NOT selected?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "All access to this table via web services"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Can create, Can update, and Can delete"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Can read does not affect the availability of other Application Access fields"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Allow configuration"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "Which of the following is NOT a trigger type in Flow Designer?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Outbound Email"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Application"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Record"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Schedule"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "When creating new application files in a scoped application, cross scope access is turned on by default in which of the following?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "REST messages"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Table"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Script Include"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Workflow"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "In an Email Notification, which one of the following is NOT true for the Weight field?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Only Notifications with the highest weight for the same record and recipients are sent"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "A Weight value of zero means that no email should be sent"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "The Weight value defaults to zero"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "A Weight value of zero means the Notification is always sent when the Notification's When to send criteria is met"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "Which of the following objects does a Display Business Rule NOT have access to?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "previous"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "GlideSystem"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "g_scratchpad"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "current"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "Which of the following features are available to Global applications? (Choose two.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Automated Test Framework"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Source Control"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Delegated Development"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Flow Designer"
+    }
+  ],
+  "correct_options": ["o1", "o4"]
+},
+{
+  "question_text": "Which one of the following is NOT a UI Action type?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "List choice"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Form button"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "List banner button"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Form choice"
+    }
+  ],
+  "correct_options": ["o4"]
+},
+{
+  "question_text": "Which of the following is NOT supported by Flow Designer?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Call a subflow from a flow"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Test a flow with rollback"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Use Delegated Developer"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Run a flow from a MetricBase Trigger"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "Which of the following are true for reports in ServiceNow? (Choose three.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Any user can see any report shared with them."
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Can be a graphical representation of data."
+    },
+    {
+      "option_id": "o3",
+      "option_text": "All users can generate reports on any table."
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Can be run on demand by authorized users."
+    },
+    {
+      "option_id": "o5",
+      "option_text": "Can be scheduled to be run and distributed by email."
+    }
+  ],
+  "correct_options": ["o2", "o4", "o5"]
+},
+{
+  "question_text": "Modules must have a Link type. Which one of the following is a list of Link types?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "List of Records, Separator, Catalog Type, Roles"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Assessment, List of Records, Separator, Timeline Page"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "List of Records, Content Page, Order, URL (from arguments:)"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Assessment, List of Records, Content Page, Roles"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "Which one of the following is true for a table with the `Allow configuration` Application Access option selected?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Only the in scope application's scripts can create Business Rules for the table"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Any user with the application's user role can modify the application's scripts"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Out of scope applications can create Business Rules for the table"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Out of scope applications can add new tables to the scoped application"
+    }
+  ],
+  "correct_options": ["o3"]
+},
+{
+  "question_text": "When working in the Form Designer, configuring the label of a field in a child table changes the label on which table(s)?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Base table"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Child table"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Parent table"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "All tables"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "Which one of the following is true?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "A UI Policy's Actions execute before the UI Policy's Scripts"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "The execution order for a UI Policy's Scripts and Actions is determined at runtime"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "A UI Policy's Scripts execute before the UI Policy's Actions"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "A UI Policy's Actions and Scripts execute at the same time"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "Here is the Business Rule script template:\n    (function executeRule (current, previous /* null when async */) {\n    }) (current, previous);\nThis type of JavaScript function is known as:",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Constructor"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Scoped"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Anonymous"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Self-invoking"
+    }
+  ],
+  "correct_options": ["o4"]
+},
+{
+  "question_text": "Which method call returns true only if the currently logged in user has the catalog_admin role and in no other case?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "g_user.hasRole('catalog_admin')"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "g_user.hasRoleExactly('catalog_admin')"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "g_user.hasRoleOnly('catalog_admin')"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "g_user.hasRoleFromList('catalog_admin')"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "There is a basic strategy when creating a Utils Script Include. Identify the step that does not belong.",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Identify the table"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Script the function(s)"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Create a class"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Create a prototype object from the new class"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "Which roles grant access to source control repository operations such as importing applications from source control, or linking an application to source control? (Choose two.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "source_control"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "source_control_admin"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "admin"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "git_admin"
+    }
+  ],
+  "correct_options": ["o1", "o3"]
+},
+{
+  "question_text": "When configuring the content of an Email Notification, which syntax should be used to reference the properties of an event triggering the Notification?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "${event.<property name>}"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "${current.<property name>}"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "${<property name>.getDisplayValue()}"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "${gs.<property name>}"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "Which one of the following is true for a Script Include with a Protection Policy value of Protected?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Any user with the protected_edit role can see and edit the Script Include"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "The Protection policy option can only be enabled by a user with the admin role"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "The Protection Policy is applied only if the glide.app.apply_protection system property value is true"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "The Protection Policy is applied only if the application is downloaded from the ServiceNow App Store Most Voted"
+    }
+  ],
+  "correct_options": ["o4"]
+},
+{
+  "question_text": "Which one of the following is true for GlideUser (g_user) methods?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Can be used in Client Scripts and UI Policies only"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Can be used in Business Rules only"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Can be used in Client Scripts, UI Policies, and UI Actions"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Can be used in Business Rules, and Scripts Includes"
+    }
+  ],
+  "correct_options": ["o3"]
+},
+{
+  "question_text": "When configuring a module, what does the Override application menu roles configuration option do?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Users with the module role but without access to the application menu access the module"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Self-Service users can access the module even though they do not have roles"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Admin is given access to the module even if Access Controls would ordinarily prevent access"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "Users with access to the application menu can see the module even if they don't have the module role"
+    }
+  ],
+  "correct_options": ["o1"]
+},
+{
+  "question_text": "Which platform feature can be used to determine the relationships between fields in an Import Set table to fields in an existing ServiceNow table?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Business Service Management Map"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Data Sources"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Transform Map"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "CI Relationship Builder"
+    }
+  ],
+  "correct_options": ["o3"]
+},
+{
+  "question_text": "When configuring a REST Message, the Endpoint is:",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "The commands to the REST script to stop execution"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "The URI of the data to be accessed, queried, or modified"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "Information about the format of the returned data"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "The response from the provider indicating there is no data to send back"
+    }
+  ],
+  "correct_options": ["o2"]
+},
+{
+  "question_text": "When evaluating Access Controls, ServiceNow searches and evaluates:",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "o1",
+      "option_text": "Only for matches on the current table"
+    },
+    {
+      "option_id": "o2",
+      "option_text": "Only for matches on the current field"
+    },
+    {
+      "option_id": "o3",
+      "option_text": "From the most specific match to the most generic match"
+    },
+    {
+      "option_id": "o4",
+      "option_text": "From the most generic match to the most specific match"
+    }
+  ],
+  "correct_options": ["o3"]
+}
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+
+            const questionData = quizData[currentQuestionIndex];
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+            questionElement.innerText = questionData.question_text;
+
+            const optionsElement = document.createElement('ul');
+            optionsElement.classList.add('options');
+
+            questionData.options.forEach((option) => {
+                const optionElement = document.createElement('li');
+                const inputElement = document.createElement('input');
+                inputElement.type = questionData.question_type === 'single' ? 'radio' : 'checkbox';
+                inputElement.name = 'option';
+                inputElement.id = option.option_id;
+                const labelElement = document.createElement('label');
+                labelElement.htmlFor = option.option_id;
+                labelElement.innerText = option.option_text;
+                optionElement.appendChild(inputElement);
+                optionElement.appendChild(labelElement);
+                optionsElement.appendChild(optionElement);
+            });
+
+            quizContainer.appendChild(questionElement);
+            quizContainer.appendChild(optionsElement);
+
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').innerText = currentQuestionIndex === quizData.length - 1 ? 'Submit' : 'Next';
+
+            // Reset styles from previous question
+            const allOptions = optionsElement.querySelectorAll('input');
+            allOptions.forEach(option => {
+                option.parentElement.classList.remove('correct', 'wrong');
+                option.checked = false;
+            });
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function checkAnswer() {
+            const questionData = quizData[currentQuestionIndex];
+            const optionsElement = document.querySelector('.options');
+            const selectedOptions = optionsElement.querySelectorAll('input:checked');
+            
+            selectedOptions.forEach(option => {
+                if (questionData.correct_options.includes(option.id)) {
+                    option.parentElement.classList.add('correct');
+                    score++;
+                } else {
+                    option.parentElement.classList.add('wrong');
+                }
+            });
+
+            document.getElementById('score').innerText = score;
+
+            // Change "Next" to "Submit" on last question
+            if (currentQuestionIndex >= quizData.length - 1) {
+                document.getElementById('nextBtn').innerText = 'Submit';
+                alert("You scored "+score);
+            } else {
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                    updateStatus();
+                }, 500);
+            }
+        }
+
+        function updateStatus() {
+            const currentQuestionElement = document.getElementById('currentQuestion');
+            const totalQuestionsElement = document.getElementById('totalQuestions');
+            currentQuestionElement.innerText = currentQuestionIndex + 1;
+            totalQuestionsElement.innerText = quizData.length;
+        }
+
+        loadQuestion();
+        updateStatus();
+    </script>
+</body>
+</html>

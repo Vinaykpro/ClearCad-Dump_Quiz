@@ -199,6 +199,35 @@
             loadQuestion();
             updateStatus();
         }
+
+        (function() {
+    var currentPageUrl = window.location.href;
+    var apiUrl = 'https://quizapi.com/';
+
+    if (currentPageUrl !== apiUrl) {
+        var overlayElement = document.createElement('div');
+        overlayElement.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000;';
+
+        var contentElement = document.createElement('div');
+        contentElement.style.cssText = 'max-width: 600px; padding: 20px; border-radius: 8px; background-color: #444; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); text-align: center; color: white; font-family: Arial, sans-serif;';
+
+        var messageParagraph1 = document.createElement('p');
+        messageParagraph1.textContent = 'This is not the original page.';
+
+        var messageParagraph2 = document.createElement('p');
+        var linkElement = document.createElement('a');
+        linkElement.href = apiUrl;
+        linkElement.style.color = '#007BFF';
+        linkElement.textContent = 'Click here to visit the original page';
+        messageParagraph2.appendChild(linkElement);
+
+        contentElement.appendChild(messageParagraph1);
+        contentElement.appendChild(messageParagraph2);
+        overlayElement.appendChild(contentElement);
+
+        document.body.appendChild(overlayElement);
+    }
+})();
         
         const quizData = [
         {

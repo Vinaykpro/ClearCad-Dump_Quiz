@@ -1382,7 +1382,444 @@
     }
   ],
   "correct_options": ["D"]
-        }
+        },
+        {
+  "question_text": "Which one of the following is NOT a method used for logging messages in a server-side script for a privately-scoped application?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "gs.log()"
+    },
+    {
+      "option_id": "B",
+      "option_text": "gs.error()"
+    },
+    {
+      "option_id": "C",
+      "option_text": "gs.warn()"
+    },
+    {
+      "option_id": "D",
+      "option_text": "gs.debug()"
+    }
+  ],
+  "correct_options": ["A"]
+},
+{
+  "question_text": "If the Create module field is selected when creating a table, what is the new module's default behavior?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Open an empty form so new records can be created"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Open a link to a wiki article with instructions on how to customize the behavior of the new module"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Display an empty homepage for the application"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Display a list of all records from the table"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "How must Application Access be configured to prevent all other private application scopes from creating configuration records on an application's data tables?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "You must create Access Controls to prevent all other application scopes from creating configuration records on an application's data tables rather than using Application Access"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Set the Accessible from field value to All application scopes and de-select the Can create option"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Set the Accessible from field value to This application scope only and de-select the Allow access to this table via web services option"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Set the Accessible from field value to This application scope only"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "What are some of the benefits of extending an existing table such as the Task table when creating a new application?",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "You can repurpose existing fields by simply changing the label."
+    },
+    {
+      "option_id": "B",
+      "option_text": "Use existing fields with no modifications."
+    },
+    {
+      "option_id": "C",
+      "option_text": "Existing logic from the parent table will be automatically applied to the new table."
+    },
+    {
+      "option_id": "D",
+      "option_text": "All of the parent table records are copied to the new table."
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "When configuring an Access Control which has no condition or script, which one of the following statements is NOT true?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "table.* will grant access to every field in a record"
+    },
+    {
+      "option_id": "B",
+      "option_text": "table.None will grant access to every record on the table"
+    },
+    {
+      "option_id": "C",
+      "option_text": "table.field will grant access to a specific field in a record"
+    },
+    {
+      "option_id": "D",
+      "option_text": "table.id will grant access to a specific record on the table"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "Which of the following methods are useful in Access Control scripts?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "g_user.hasRole() and current.isNewRecord()"
+    },
+    {
+      "option_id": "B",
+      "option_text": "gs.hasRole() and current.isNewRecord()"
+    },
+    {
+      "option_id": "C",
+      "option_text": "g_user.hasRole() and current.isNew()"
+    },
+    {
+      "option_id": "D",
+      "option_text": "gs.hasRole() and current.isNew()"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "When a ServiceNow instance requests information from a web service, ServiceNow is the web service:",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Publisher"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Specialist"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Provider"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Consumer"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "Which one of the following is the fastest way to create and configure a Record Producer?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Create a Catalog Category, open the category, and select the Add New Record Producer button"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Use the Record Producer module then add and configure all variables manually"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Open the table in the Table records and select the Add to Service Catalog Related Link"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Open the table's form, right-click on the form header, and select the Create Record Producer menu item"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "Which objects can you use in a Scheduled Script Execution (Scheduled Job) script?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "GlideRecord and current"
+    },
+    {
+      "option_id": "B",
+      "option_text": "GlideUser and GlideRecord"
+    },
+    {
+      "option_id": "C",
+      "option_text": "GlideSystem and GlideRecord"
+    },
+    {
+      "option_id": "D",
+      "option_text": "GlideSystem and current"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "Can inherited fields be deleted from a table?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Yes, select the red X in the left-most column in the table definition"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Yes, but only if they are text fields"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Yes, but only if there has never been any saved field data"
+    },
+    {
+      "option_id": "D",
+      "option_text": "No, inherited fields cannot be deleted from a child table"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "What is the purpose of the Application Picker?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Select an application to run"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Select an application as a favorite in the Application Navigator"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Choose an application to edit and set the Application Scope"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Choose an application to download and install"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "What are Application Files in a ServiceNow application?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "An XML export of an application's table records"
+    },
+    {
+      "option_id": "B",
+      "option_text": "CSV files containing data imported into an application"
+    },
+    {
+      "option_id": "C",
+      "option_text": "ServiceNow artifacts comprising an application"
+    },
+    {
+      "option_id": "D",
+      "option_text": "XML exports of an application's Update Set"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "Which one of the following is NOT true for Modules?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Modules open content pages"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Access to Modules is controlled with roles"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Every Module must be part of an Application Menu"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Every Module must be associated with a table"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "A graphical view of relationships among tables is a:",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Schema map"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Dependency view"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Graphical User Interface"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Map source report"
+    }
+  ],
+  "correct_options": ["A"]
+},
+{
+  "question_text": "Which one of the following is true for the Application Picker?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "All custom application scopes and the Global scope appear in the Application Picker"
+    },
+    {
+      "option_id": "B",
+      "option_text": "All applications in ServiceNow, including baseline applications like Incident, appear in the Application Picker"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Only custom applications appear in the Application Picker"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Only downloaded applications appear in the Application Picker"
+    }
+  ],
+  "correct_options": ["A"]
+},
+{
+  "question_text": "When creating an application through the Guided Application Creator, which of the following is a user experience option?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Portal"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Mobile"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Self-service"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Workspace"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "When writing a Client Script to provide feedback targeted at a specific field, which method should be used?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "g_form.showInfoMessage()"
+    },
+    {
+      "option_id": "B",
+      "option_text": "g_form.showFieldMsg()"
+    },
+    {
+      "option_id": "C",
+      "option_text": "g_form.addInfoMessage()"
+    },
+    {
+      "option_id": "D",
+      "option_text": "g_form.addFieldMsg()"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "Which actions can a Business Rule take without scripting?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Set field values and write to the system log"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Set field values and generate an event"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Set field values and add message"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Set field values and query the database"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "Which server-side object provides methods for working with dates when writing a script in a privately scoped application?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "GlideDateTime"
+    },
+    {
+      "option_id": "B",
+      "option_text": "GlideRecord"
+    },
+    {
+      "option_id": "C",
+      "option_text": "GlideSystem"
+    },
+    {
+      "option_id": "D",
+      "option_text": "current"
+    }
+  ],
+  "correct_options": ["A"]
+}
         ];
         let currentQuestionIndex = 0;
 let score = 0;

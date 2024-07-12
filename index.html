@@ -1819,7 +1819,250 @@
     }
   ],
   "correct_options": ["A"]
+},
+{
+  "question_text": "Application developers can specify which ServiceNow page a user sees after submitting a new record using the Record Producer UI. How is the page specified?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Create an application property to store the URL"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Configure the page in the Module that opens the Record Producer UI"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Write an after Business Rule script for the Record Producer's table: window.redirect = \"<URL>\";"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Write a script in the Record Producer's Script field: producer.redirect = \"<URL>\";"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "Identify characteristic(s) of a Record Producer. (Choose three.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "All records created using this strategy are inserted into the Requested Item [sc_req_item] table."
+    },
+    {
+      "option_id": "B",
+      "option_text": "Each field prompts the user with a question rather than a field label."
+    },
+    {
+      "option_id": "C",
+      "option_text": "They must be scripted."
+    },
+    {
+      "option_id": "D",
+      "option_text": "You can script behaviors of fields in the user interface."
+    },
+    {
+      "option_id": "E",
+      "option_text": "Graphics can be included on the user interface."
+    }
+  ],
+  "correct_options": ["B", "D", "E"]
+},
+{
+  "question_text": "Which server-side API debug log method is available for scoped applications?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "gs.log()"
+    },
+    {
+      "option_id": "B",
+      "option_text": "gs.info()"
+    },
+    {
+      "option_id": "C",
+      "option_text": "gs.debuglog()"
+    },
+    {
+      "option_id": "D",
+      "option_text": "gs.print()"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "Which script types execute on the server? (Choose three.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Business Rule"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Client Scripts"
+    },
+    {
+      "option_id": "C",
+      "option_text": "UI Policies"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Script Actions"
+    },
+    {
+      "option_id": "E",
+      "option_text": "Scheduled Jobs"
+    }
+  ],
+  "correct_options": ["A", "D", "E"]
+},
+{
+  "question_text": "What is the best UX format to use for lists and forms?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Forms"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Lists"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Standard"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Classic"
+    }
+  ],
+  "correct_options": ["C"]
+},
+{
+  "question_text": "When creating a table in a privately-scoped application, which four Access Controls are created for the table?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Insert, Delete, Query, Write"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Create, Delete, Read, Write"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Create, Delete, Read, Update"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Insert, Delete, Query, Update"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "Which one of the following is true for this script fragment?\ng_user.hasRole('x_my_app_user');",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "There is no g_user.hasRole() method"
+    },
+    {
+      "option_id": "B",
+      "option_text": "The method returns false only if the currently logged in user has the x_my_app_user role"
+    },
+    {
+      "option_id": "C",
+      "option_text": "The method returns true only if the currently logged in user has the x_my_app_user role"
+    },
+    {
+      "option_id": "D",
+      "option_text": "The method returns true if the currently logged in user has the x_my_app_user role or the admin role"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "Which of the following steps can be used to import new data into ServiceNow from a spreadsheet?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "Select Data Source, Schedule Transform"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Load Data, Create Transform Map, Run Transform"
+    },
+    {
+      "option_id": "C",
+      "option_text": "Define Data Source, Select Transform Map, Run Transform"
+    },
+    {
+      "option_id": "D",
+      "option_text": "Select Import Set, Select Transform Map, Run Transform"
+    }
+  ],
+  "correct_options": ["B"]
+},
+{
+  "question_text": "For Application Access there is a configuration option called Allow access to this table via web services. Which one of the following statements is true when this option is selected?",
+  "question_type": "single",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "This option restricts the ability to delete records via web services but records can always be read"
+    },
+    {
+      "option_id": "B",
+      "option_text": "Even when not selected, users with the correct permissions can use web services to access the table's records"
+    },
+    {
+      "option_id": "C",
+      "option_text": "This option restricts access only to SOAP web services but does not apply to REST"
+    },
+    {
+      "option_id": "D",
+      "option_text": "The user performing the query via web services must have the correct permissions to access the table's records"
+    }
+  ],
+  "correct_options": ["D"]
+},
+{
+  "question_text": "Which of the following statements must evaluate to true for a user to pass an Access Control? (Choose three.)",
+  "question_type": "multiple",
+  "options": [
+    {
+      "option_id": "A",
+      "option_text": "The user has one of the roles specified in the Required roles related list."
+    },
+    {
+      "option_id": "B",
+      "option_text": "Scripts configured in the Access Control must evaluate to true."
+    },
+    {
+      "option_id": "C",
+      "option_text": "Other matching Access Controls for the records evaluate to true."
+    },
+    {
+      "option_id": "D",
+      "option_text": "Conditions configured in the Access Control must evaluate to true."
+    },
+    {
+      "option_id": "E",
+      "option_text": "The user must be granted access through a business rule."
+    }
+  ],
+  "correct_options": ["A", "B", "D"]
 }
+            
         ];
         let currentQuestionIndex = 0;
 let score = 0;

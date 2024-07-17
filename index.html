@@ -3595,6 +3595,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loadQuestion();
     updateStatus();
 });
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      document.getElementById('nextBtn').click();
+    } else if (event.key === 'Backspace') {
+        document.getElementById('prevBtn').click();
+    }
+});
     </script>
 </body>
 </html>

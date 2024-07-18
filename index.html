@@ -3424,6 +3424,20 @@
 let score = 0;
 let selectedQuestions = [];
 let answeredQuestions = new Set();
+let canSpeak = true;
+
+function speak(text) {
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.pitch = 1;
+        utterance.rate = 1;
+        utterance.volume = 1;
+        window.speechSynthesis.speak(utterance);
+    } else if(canSpeak) {
+        canSpeak = false;
+        alert('Text-to-speech not supported for you!');
+    }
+}
 
 function startQuiz() {
     document.querySelector('.maincontainer').style.display = 'none';
@@ -3440,6 +3454,8 @@ function loadQuestion() {
     const questionElement = document.createElement('div');
     questionElement.classList.add('question');
     questionElement.innerText = questionData.question_text;
+
+    speak(questionData.question_text);
 
     const optionsElement = document.createElement('ul');
     optionsElement.classList.add('options');

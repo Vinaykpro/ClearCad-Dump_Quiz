@@ -124,6 +124,14 @@
             margin-bottom: 10px;
             text-align: center;
         }
+        .centered-link {
+            display: block;
+            line-height: 50px;
+            margin: 5px auto;
+            color: lightgreen;
+            text-align: center;
+            text-decoration: none;        
+        }
     </style>
 </head>
 <body>
@@ -161,6 +169,7 @@
         <h2>Your Score: <span class="score">0</span></h2>
         <button onclick="backToMenu()">Back to Main Menu</button>
     </div>
+    <a class="centered-link" href="https://vinaykpro.github.io/ClearCSA/"> Looking for CSA Dumps?? Click here</a>
     <script>
         function setQ(n) {
             let randomArray = createRandomArray(n, quizData.length);

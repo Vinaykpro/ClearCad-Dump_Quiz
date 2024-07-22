@@ -3434,13 +3434,18 @@ let score = 0;
 let selectedQuestions = [];
 let answeredQuestions = new Set();
 let canSpeak = true;
+let currentUtterance = null;
 
 function speak(text) {
     if ('speechSynthesis' in window) {
+        if (currentUtterance !== null) {
+            window.speechSynthesis.cancel();
+        }
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.pitch = 1;
         utterance.rate = 1;
         utterance.volume = 1;
+        currentUtterance = utterance;
         window.speechSynthesis.speak(utterance);
     } else if(canSpeak) {
         canSpeak = false;
